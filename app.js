@@ -1,6 +1,7 @@
 const app = Vue.createApp({
   data() {
     return {
+      url: 'https://apricot-web.com',
       showBooks: true,
       books: [
         { title: 'Book1', author: 'Yoko' },

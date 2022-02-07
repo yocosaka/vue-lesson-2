@@ -20,6 +20,10 @@
   <body>
     <h1>Hello, Vue</h1>
     <div id="app">
+      <!-- attribute binding -->
+      <!-- <a v-bind:href="url">Apricot Web HomePage</a> -->
+      <a :href="url">Apricot Web HomePage</a>
+
       <div v-if="showBooks">
         <ul>
           <li v-for="book in books">{{ book.title }} - {{book.author}}</li>
