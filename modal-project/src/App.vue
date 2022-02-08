@@ -10,6 +10,7 @@
   </div>
   <p>Welcome...</p>
   <button v-if="!showModal" @click="toggleModal">Open Modal</button>
+  <!-- there are many event modifier like: @click.right, @click.shift, @click.alt etc -->
 </template>
 
 <script>
