@@ -1,6 +1,6 @@
 <template>
   <h1>{{ title }}</h1>
-  <Modal />
+  <Modal header="Sign up for the Givenaway!" text="Grab the discount!" />
 </template>
 
 <script>
@@ -25,8 +25,6 @@ export default {
 </script>
 
 <style>
-
-
 h1 {
   border-bottom: 1px solid #ddd;
   display: inline-block;
