@@ -4,9 +4,9 @@ const app = Vue.createApp({
       url: 'https://apricot-web.com',
       showBooks: true,
       books: [
-        { title: 'Book1', author: 'Yoko' },
-        { title: 'Book2', author: 'Vicky' },
-        { title: 'Book3', author: 'Asahi' },
+        { title: 'Book1', author: 'Yoko', image: './assets/1.jpg' },
+        { title: 'Book2', author: 'Vicky', image: './assets/2.jpg' },
+        { title: 'Book3', author: 'Asahi', image: './assets/3.jpg' },
       ],
     };
   },
