@@ -1,5 +1,7 @@
 <template>
   <h1>{{ title }}</h1>
+  <input type="text" ref="myInput" />
+  <button @click="handleClick">Click me</button>
 </template>
 
 <script>
@@ -9,6 +11,13 @@ export default {
     return {
       title: 'My first Vue app',
     };
+  },
+  methods: {
+    handleClick() {
+      console.log(this.$refs.myInput.value);
+      this.$refs.myInput.classList.add('oh-my-input');
+      this.$refs.myInput.focus();
+    },
   },
 };
 </script>
