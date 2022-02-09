@@ -14,8 +14,20 @@
       <!-- Slot end -->
     </Modal>
   </div>
+
+  <div v-if="showModalTwo">
+    <Modal @closeModal="toggleModalTwo">
+      <!-- Slot start -->
+      <!-- Name Slot: mylinks start -->
+      <template v-slot:mylinks>
+        <a href="#">Login</a> <br />
+        <a href="#">Setup your Profile</a>
+      </template>
+    </Modal>
+  </div>
   <p>Welcome...</p>
-  <button v-if="!showModal" @click="toggleModal">Open Modal</button>
+  <button v-if="!showModal" @click="toggleModal">Open Modal</button> <br />
+  <button v-if="!showModalTwo" @click="toggleModalTwo">Open Modal Two</button>
   <!-- there are many event modifier like: @click.right, @click.shift, @click.alt etc -->
 </template>
 
@@ -31,6 +43,7 @@ export default {
       header: 'Sign up for the Giveaway!',
       text: 'Grab the discount!',
       showModal: false,
+      showModalTwo: false,
     };
   },
   methods: {
@@ -41,6 +54,9 @@ export default {
     },
     toggleModal() {
       this.showModal = !this.showModal;
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo;
     },
   },
 };
