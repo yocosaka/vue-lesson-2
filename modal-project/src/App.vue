@@ -1,6 +1,6 @@
 <template>
   <h1>{{ title }}</h1>
-  <div v-if="showModal">
+  <teleport to=".modals" v-if="showModal">
     <Modal theme="sale" @closeModal="toggleModal">
       <!-- Slot start -->
       <!-- Name Slot: mylinks start -->
@@ -13,9 +13,9 @@
       <p>{{ text }}</p>
       <!-- Slot end -->
     </Modal>
-  </div>
+  </teleport>
 
-  <div v-if="showModalTwo">
+  <teleport to=".modals" v-if="showModalTwo">
     <Modal @closeModal="toggleModalTwo">
       <!-- Slot start -->
       <!-- Name Slot: mylinks start -->
@@ -24,7 +24,7 @@
         <a href="#">Setup your Profile</a>
       </template>
     </Modal>
-  </div>
+  </teleport>
   <p>Welcome...</p>
   <button v-if="!showModal" @click="toggleModal">Open Modal</button> <br />
   <button v-if="!showModalTwo" @click="toggleModalTwo">Open Modal Two</button>
