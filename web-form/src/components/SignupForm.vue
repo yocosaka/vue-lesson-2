@@ -1,9 +1,11 @@
 <template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <label>Email:</label>
     <input type="email" required v-model="email" />
+
     <label>Password:</label>
     <input type="password" required v-model="password" />
+    <p v-if="passwordError" class="error">{{ passwordError }}</p>
 
     <label>Role</label>
     <select v-model="role">
@@ -15,8 +17,9 @@
     <input type="text" v-model="tempSkill" @keyup="addSkill" />
     <div v-for="skill in skills" :key="skill" class="pill">
       {{ skill }}
-      <button @click="removeSkill(skill)">x</button>
+      <span @click="removeSkill(skill)">x</span>
     </div>
+    <p v-if="skillError" class="error">{{ skillError }}</p>
 
     <div class="terms">
       <input type="checkbox" v-model="terms" required />
@@ -28,7 +31,6 @@
     </div>
   </form>
 
-  <p v-if="error">{{ error }}</p>
   <p>Email: {{ email }}</p>
   <p>Password: {{ password }}</p>
   <p>Role: {{ role }}</p>
@@ -46,7 +48,8 @@ export default {
       terms: false,
       tempSkill: '',
       skills: [],
-      error: '',
+      skillError: '',
+      passwordError: '',
     };
   },
   methods: {
@@ -55,7 +58,7 @@ export default {
       if (e.key === ',' && this.tempSkill) {
         let newSkill = this.tempSkill.slice(0, -1);
         if (this.skills.includes(newSkill)) {
-          this.error = `${newSkill} is already added`;
+          this.skillError = `${newSkill} is already added`;
         } else {
           this.skills.push(newSkill);
           this.tempSkill = '';
@@ -64,6 +67,23 @@ export default {
     },
     removeSkill(skillToRemove) {
       this.skills = this.skills.filter((skill) => skill !== skillToRemove);
+    },
+    handleSubmit() {
+      // console.log('form submitted');
+      // validate password
+      this.passwordError =
+        this.password.length > 5
+          ? ''
+          : 'Password must be at least 6 chars long';
+
+      if (!this.passwordError) {
+        // make request to database to save user
+        console.log('email: ', this.email);
+        console.log('password: ', this.password);
+        console.log('role: ', this.role);
+        console.log('skills: ', this.skills);
+        console.log('terms accepted: ', this.terms);
+      }
     },
   },
 };
