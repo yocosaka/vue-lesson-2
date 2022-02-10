@@ -1,7 +1,19 @@
 {
   "jobs": [
-    { "title": "Ninja UX Designer", "id": 1, "details": "lorem" },
-    { "title": "Ninja Web Developer", "id": 2, "details": "lorem" },
-    { "title": "Ninja Vue Developer", "id": 3, "details": "lorem" }
+    {
+      "title": "Ninja UX Designer",
+      "id": 1,
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa officiis, consequuntur delectus animi quas perferendis vitae eum dolor ullam deserunt dicta provident, ducimus ipsam ratione laudantium, natus quis minus!"
+    },
+    {
+      "title": "Ninja Web Developer",
+      "id": 2,
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa officiis, consequuntur delectus animi quas perferendis vitae eum dolor ullam deserunt dicta provident, ducimus ipsam ratione laudantium, natus quis minus!"
+    },
+    {
+      "title": "Ninja Vue Developer",
+      "id": 3,
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa officiis, consequuntur delectus animi quas perferendis vitae eum dolor ullam deserunt dicta provident, ducimus ipsam ratione laudantium, natus quis minus!"
+    }
   ]
 }
