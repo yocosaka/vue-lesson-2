@@ -11,13 +11,19 @@
       <option value="designer">Web Designer</option>
     </select>
 
+    <label>Skills</label>
+    <input type="text" v-model="tempSkill" @keyup="addSkill" />
+    <div v-for="skill in skills" :key="skill" class="pill">
+      {{ skill }}
+    </div>
+
     <div class="terms">
       <input type="checkbox" v-model="terms" required />
       <label>Accept terms and conditions</label>
     </div>
-
   </form>
 
+  <p v-if="error">{{ error }}</p>
   <p>Email: {{ email }}</p>
   <p>Password: {{ password }}</p>
   <p>Role: {{ role }}</p>
@@ -33,7 +39,24 @@ export default {
       password: '',
       role: '',
       terms: false,
+      tempSkill: '',
+      skills: [],
+      error: '',
     };
+  },
+  methods: {
+    addSkill(e) {
+      console.log(e);
+      if (e.key === ',' && this.tempSkill) {
+        let newSkill = this.tempSkill.slice(0, -1);
+        if (this.skills.includes(newSkill)) {
+          this.error = `${newSkill} is already added`;
+        } else {
+          this.skills.push(newSkill);
+          this.tempSkill = '';
+        }
+      }
+    },
   },
 };
 </script>
