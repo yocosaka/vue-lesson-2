@@ -6,7 +6,7 @@
   </div>
 
   <!-- Programatic Navigation using history -->
-  <button @click="redirect">Redirect</button>
+  <button @click="redirect">Redirect To Home</button>
   <button @click="back">Go Back</button>
   <button @click="forward">Go Forward</button>
 
@@ -16,7 +16,9 @@
 <script>
 export default {
   methods: {
-    redirect() {},
+    redirect() {
+      this.$router.push({ name: 'Home' });
+    },
     back() {
       this.$router.go(-1);
     },
