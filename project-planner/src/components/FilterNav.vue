@@ -1,14 +1,27 @@
 <template>
   <nav class="filter-nav">
-    <button @click="updateFilter('all')">All</button>
-    <button @click="updateFilter('completed')">Completed</button>
-    <button @click="updateFilter('ongoing')">Ongoing</button>
+    <button @click="updateFilter('all')" :class="{ active: filter === 'all' }">
+      All
+    </button>
+    <button
+      @click="updateFilter('completed')"
+      :class="{ active: filter === 'completed' }"
+    >
+      Completed
+    </button>
+    <button
+      @click="updateFilter('ongoing')"
+      :class="{ active: filter === 'ongoing' }"
+    >
+      Ongoing
+    </button>
   </nav>
 </template>
 
 <script>
 export default {
   name: 'FilterNav',
+  props: ['filter'],
   methods: {
     updateFilter(by) {
       this.$emit('filter', by);
