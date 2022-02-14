@@ -47,17 +47,11 @@ export default {
         this.errors.push('Details must be more than 5 characters long');
       }
       // 2. overwrite database
-      let project = {
-        title: this.title,
-        details: this.details,
-        complete: false,
-      };
-
       if (!this.errors.length) {
         fetch('http://localhost:3000/projects/' + this.id, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(project),
+          body: JSON.stringify({ title: this.title, details: this.details }),
         })
           .then(() => this.$router.push('/'))
           .catch((error) => console.log(error.message));
