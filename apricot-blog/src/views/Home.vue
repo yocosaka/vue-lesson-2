@@ -1,33 +1,37 @@
 <template>
-  <div class="home">Home</div>
-  <p ref="p">{{ name }} is {{ age }}.</p>
-  <button @click="handleClick">Click me</button>
-  <button @click="age++">Increase Age</button>
-  <input type="text" v-model="name" />
+  <div class="home">
+    <h1>Home</h1>
+    <h2>Refs</h2>
+    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>
+    <button @click="updateNinjaOne">Update ninja one</button>
+    <h2>Reactive</h2>
+    <p>{{ ninjaTwo.name }} - {{ ninjaTwo.age }}</p>
+    <button @click="updateNinjaTwo">Update ninja two</button>
+  </div>
 </template>
 
 <script>
-// import ref from vue to use Ref for reactivity
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 export default {
   name: 'Home',
   setup() {
-    // Make variables reactive using ref
-    const name = ref('vicky');
-    const age = ref(20);
+    const ninjaOne = ref({ name: 'mario', age: 30 });
+    const ninjaTwo = reactive({ name: 'luigi', age: 35 });
 
-    const handleClick = () => {
-      // update name and age that use ref for reactivity
-      name.value = 'Yoko';
-      age.value = 37;
+    // reactive cannot be used on primitive values
+    const nameOne = ref('mario'); // will be reactive
+    const nameTwo = reactive('luigi'); // will NOT be reactive
+
+    const updateNinjaOne = () => {
+      ninjaOne.value.age = 40;
     };
 
-    return {
-      name,
-      age,
-      handleClick,
+    const updateNinjaTwo = () => {
+      ninjaTwo.age = 45;
     };
+
+    return { ninjaOne, ninjaTwo, updateNinjaOne, updateNinjaTwo };
   },
 };
 </script>
