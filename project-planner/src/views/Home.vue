@@ -3,16 +3,16 @@
 
   <div v-if="projects.length">
     <div v-for="project in projects" :key="project.id">
-      <p>{{ project.title }}</p>
-      <input type="checkbox" :checked="project.complete" />
+      <SingleProject :project="project" />
     </div>
   </div>
 </template>
 
 <script>
+import SingleProject from '../components/SingleProject.vue';
 export default {
   name: 'Home',
-  components: {},
+  components: { SingleProject },
   data() {
     return {
       projects: [],
