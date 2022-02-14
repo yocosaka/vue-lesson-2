@@ -1,12 +1,14 @@
 <template>
   <NavBar />
+  <FilterNav />
   <router-view />
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue';
+import FilterNav from './components/FilterNav.vue';
 export default {
-  components: { NavBar },
+  components: { NavBar, FilterNav },
 };
 </script>
 
