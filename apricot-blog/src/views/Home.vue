@@ -1,55 +1,31 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <input type="text" v-model="search" />
-    <p>Search Term - {{ search }}</p>
-    <div v-for="name in matchingNames" :key="name">
-      {{ name }}
-    </div>
-    <button @click="stopAllWatching">Stop Watch</button>
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
-import { computed, ref, watch, watchEffect } from 'vue';
+import { ref } from 'vue';
+import PostList from '../components/PostList.vue';
 
 export default {
   name: 'Home',
+  components: { PostList },
   setup() {
-    const search = ref('');
-    const names = ref([
-      'mario',
-      'yoshi',
-      'luigi',
-      'toad',
-      'bowser',
-      'koopa',
-      'peach',
+    const posts = ref([
+      {
+        title: 'Welcome to my blog',
+        body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+        id: 1,
+      },
+      {
+        title: 'My Second Title',
+        body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+        id: 2,
+      },
     ]);
-
-    //Everytime 'search' changes, do something
-    const stopWatch = watch(search, () => {
-      console.log('Watch function run for search');
-    });
-
-    //=> Everytime any variable or dependencies inside watchEffect changes, run code here
-    const stopWatchEffect = watchEffect(() => {
-      console.log('watch effect function ran', search.value);
-    });
-
-    const matchingNames = computed(() => {
-      return names.value.filter((name) =>
-        name.includes(search.value.toLowerCase()),
-      );
-    });
-
-    const stopAllWatching = () => {
-      stopWatch();
-      stopWatchEffect();
-      console.log('====== stopAllWathing from now =====');
-    };
-
-    return { names, search, matchingNames, stopAllWatching };
+    return { posts };
   },
 };
 </script>
