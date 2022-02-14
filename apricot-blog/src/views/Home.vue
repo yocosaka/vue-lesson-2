@@ -6,6 +6,7 @@
     <div v-for="name in matchingNames" :key="name">
       {{ name }}
     </div>
+    <button @click="stopAllWatching">Stop Watch</button>
   </div>
 </template>
 
@@ -27,12 +28,12 @@ export default {
     ]);
 
     //Everytime 'search' changes, do something
-    watch(search, () => {
+    const stopWatch = watch(search, () => {
       console.log('Watch function run for search');
     });
 
     //=> Everytime any variable or dependencies inside watchEffect changes, run code here
-    watchEffect(() => {
+    const stopWatchEffect = watchEffect(() => {
       console.log('watch effect function ran', search.value);
     });
 
@@ -42,7 +43,13 @@ export default {
       );
     });
 
-    return { names, search, matchingNames };
+    const stopAllWatching = () => {
+      stopWatch();
+      stopWatchEffect();
+      console.log('====== stopAllWathing from now =====');
+    };
+
+    return { names, search, matchingNames, stopAllWatching };
   },
 };
 </script>
