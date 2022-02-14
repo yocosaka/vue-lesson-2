@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted, onUpdated } from '@vue/runtime-core';
 import SinglePost from '../components/SinglePost.vue';
 export default {
   name: 'PostList',
@@ -19,6 +20,16 @@ export default {
   components: { SinglePost },
   setup(props) {
     console.log(props.posts);
+
+    onMounted(() => {
+      console.log('component mounted');
+    });
+    onUnmounted(() => {
+      console.log('component unmounted');
+    });
+    onUpdated(() => {
+      console.log('component updated');
+    });
   },
 };
 </script>
