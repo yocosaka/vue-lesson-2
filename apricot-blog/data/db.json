@@ -43,6 +43,23 @@
         "apple"
       ],
       "id": 5
+    },
+    {
+      "title": "new post",
+      "body": "honey so sweet",
+      "tags": [
+        "honey",
+        "sweet"
+      ],
+      "id": 6
+    },
+    {
+      "title": "Moomin",
+      "body": "moomin love",
+      "tags": [
+        "moomin"
+      ],
+      "id": 7
     }
   ]
 }

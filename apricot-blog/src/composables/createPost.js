@@ -1,4 +1,6 @@
 import { ref } from 'vue';
+// to use redirection instead of this.$router
+import { useRouter } from 'vue-router';
 
 const createPost = () => {
   const title = ref('');
@@ -6,6 +8,8 @@ const createPost = () => {
   const tag = ref('');
   const tags = ref([]);
   const errors = ref([]);
+  // create router
+  const router = useRouter();
 
   const addTag = () => {
     errors.value = [];
@@ -60,7 +64,10 @@ const createPost = () => {
         }
         // console.log('Success', data);
 
-        window.location.href = '/';
+        // You cannot use this.$router.push('/') with setup() function in composition api
+        // Instead, you can use useRouter after importing it from vue-router to redirect
+        // router.push('/');
+        router.push({ name: 'Home' });
       } catch (err) {
         console.log(err.message);
         errors.value.push(err.message);
