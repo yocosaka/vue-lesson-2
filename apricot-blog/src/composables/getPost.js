@@ -6,7 +6,7 @@ const getPost = (id) => {
 
   const load = async () => {
     try {
-      const data = await fetch(' http://localhost:3000/posts/' + id);
+      const data = await fetch('http://localhost:3000/posts/' + id);
       if (!data.ok) {
         throw Error('unable to fetch post data');
       }
