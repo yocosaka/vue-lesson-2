@@ -43,13 +43,13 @@ const createPost = () => {
     if (!errors.value.length) {
       // create a new post
       let post = {
-        title,
-        body,
-        tags,
+        title: title.value,
+        body: body.value,
+        tags: tags.value,
       };
 
       try {
-        const data = await fetch('http://localhost:3000/new', {
+        const data = await fetch('http://localhost:3000/posts', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(post),
@@ -58,7 +58,9 @@ const createPost = () => {
         if (!data.ok) {
           throw Error('unable to create a new post');
         }
-        this.$router.push('/');
+        // console.log('Success', data);
+
+        window.location.href = '/';
       } catch (err) {
         console.log(err.message);
         errors.value.push(err.message);
