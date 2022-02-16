@@ -3,7 +3,11 @@
   <div v-if="post" class="post">
     <h1>{{ post.title }}</h1>
     <p class="pre">{{ post.body }}</p>
-    <span v-for="tag in post.tags" :key="tag">#{{ tag }} </span>
+    <span v-for="tag in post.tags" :key="tag">
+      <router-link :to="{ name: 'Tag', params: { tag: tag } }"
+        >#{{ tag }}
+      </router-link>
+    </span>
   </div>
   <div v-else><Spinner /></div>
 </template>
