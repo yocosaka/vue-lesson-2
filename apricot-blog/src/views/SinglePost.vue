@@ -1,7 +1,7 @@
 <template>
   <div v-if="error">{{ error }}</div>
   <div v-if="post" class="post">
-    <h1>{{ post.title }}</h1>
+    <h3>{{ post.title }}</h3>
     <p class="pre">{{ post.body }}</p>
     <span v-for="tag in post.tags" :key="tag">
       <router-link :to="{ name: 'Tag', params: { tag: tag } }"
@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .tags a {
   margin-right: 10px;
 }

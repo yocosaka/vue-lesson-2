@@ -1,4 +1,6 @@
 import { ref } from 'vue';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 const getPost = (id) => {
   const post = ref({});
@@ -6,11 +8,17 @@ const getPost = (id) => {
 
   const load = async () => {
     try {
-      const data = await fetch('http://localhost:3000/posts/' + id);
-      if (!data.ok) {
-        throw Error('unable to fetch post data');
+      // Get a single post based on ID from firebase
+      const postCol = doc(db, 'posts', id);
+      const response = await getDoc(postCol);
+      post.value = {
+        id: response.id,
+        ...response.data(),
+      };
+
+      if (!response.exists()) {
+        throw Error('Sorry...The post with the id does not exist.');
       }
-      post.value = await data.json();
     } catch (err) {
       error.value = err.message;
     }
