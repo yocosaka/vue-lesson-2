@@ -1,7 +1,6 @@
 import { ref } from 'vue';
+// to use redirection instead of this.$router
 import { useRouter } from 'vue-router';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase/config';
 
 const createPost = () => {
   const title = ref('');
@@ -54,11 +53,23 @@ const createPost = () => {
       };
 
       try {
-        const docRef = await addDoc(collection(db, 'posts'), post);
-        // console.log('Document written with ID: ', docRef.id);
-        router.push({ name: 'SinglePost', params: { id: docRef.id } });
+        const data = await fetch('http://localhost:3000/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(post),
+        });
+
+        if (!data.ok) {
+          throw Error('unable to create a new post');
+        }
+        // console.log('Success', data);
+
+        // You cannot use this.$router.push('/') with setup() function in composition api
+        // Instead, you can use useRouter after importing it from vue-router to redirect
+        // router.push('/');
+        router.push({ name: 'Home' });
       } catch (err) {
-        // console.log(err.message);
+        console.log(err.message);
         errors.value.push(err.message);
       }
     }
